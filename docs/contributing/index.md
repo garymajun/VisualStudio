@@ -1,0 +1,16 @@
+# Contributing to Projects with GitHub for Visual Studio
+
+Use GitHub for Visual Studio to manage your projects and work with Pull Requests.
+
+### Table of Contents
+
+- Adding and cloning repositories
+  - [Publishing an existing project to GitHub](publishing-an-existing-project-to-github.md)
+  - [Creating an empty repository from Visual Studio](creating-an-empty-repository-from-visual-studio.md)
+  - [Cloning a repository to Visual Studio](cloning-a-repository-to-visual-studio.md)
+- Working with Pull Requests
+  - [View the Pull Requests for a repository](view-the-pull-requests-for-a-repository.md)
+  - Sending a Pull Request
+  - Review a Pull Request in Visual Studio
+  - Making changes to a Pull Request
+- [Contact a human](https://github.com/contact)
