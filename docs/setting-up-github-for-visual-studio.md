@@ -1,10 +1,10 @@
 # Setting up GitHub for Visual Studio
 
-## [Installing GitHub for Visual Studio](installing-github-for-visual-stuidio)
+## [Installing GitHub for Visual Studio](installing-github-for-visual-studio)
 
-GitHub for Visual Studio is available for Visual Studio 2015 and later.
+GitHub for Visual Studio is available for Visual Studio 2015 and later. The Community, Professional and Enterprise editions are supported.
 
-## Authenticating to GitHub
+## [Authenticating to GitHub](authenticating-to-github)
 
 Add your GitHub.com or GitHub Enterprise account information to Visual Studio so you can access your repositories.
 
