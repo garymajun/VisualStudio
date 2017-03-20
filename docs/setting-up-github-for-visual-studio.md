@@ -10,4 +10,6 @@ Add your GitHub.com or GitHub Enterprise account information to Visual Studio so
 
 ### Configuring Git in Visual Studio
 
+TODO: Create page
+
 Configure how Visual Studio interacts with GitHub

@@ -14,16 +14,16 @@ GitHub for Visual Studio can be installed from the Visual Studio 2015 or 2017 in
 ### Visual Studio 2015
 
 1. Start the Visual Studio 2015 installer.
-2. If Visual Studio is already installed, click **Modify**.
-3. Scroll down to **Common Tools** and check **GitHub extension for Visual Studio**.
+2. If Visual Studio is already installed, click **Modify**. TODO: Insert screenshot
+3. Scroll down to **Common Tools** and check **GitHub extension for Visual Studio**. TODO: Insert screenshot
 4. Click the **Update** or **Install** button.
 
 ### Visual Studio 2017
 
 1. Start the Visual Studio 2017 installer.
-2. If Visual Studio is already installed, click **Modify**.
+2. If Visual Studio is already installed, click **Modify**. TODO: Insert screenshot
 3. Select the **Individual components** tab at the top.
-4. Scroll down to **Code tools** and check **GitHub extension for Visual Studio**.
+4. Scroll down to **Code tools** and check **GitHub extension for Visual Studio**. TODO: Insert screenshot
 5. Click the **Modify** button.
 
 ## Installing from the Visual Studio Marketplace
