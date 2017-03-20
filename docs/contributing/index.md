@@ -10,7 +10,7 @@ Use GitHub for Visual Studio to manage your projects and work with Pull Requests
   - [Cloning a repository to Visual Studio](cloning-a-repository-to-visual-studio.md)
 - Working with Pull Requests
   - [View the Pull Requests for a repository](view-the-pull-requests-for-a-repository.md)
-  - Sending a Pull Request
-  - Review a Pull Request in Visual Studio
+  - [Sending a Pull Request](sending-a-pull-request.md)
+  - [Review a Pull Request in Visual Studio](review-a-pull-request-in-visual-studio.md)
   - Making changes to a Pull Request
 - [Contact a human](https://github.com/contact)
