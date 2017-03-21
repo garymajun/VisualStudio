@@ -28,17 +28,3 @@ To compare the contents of a file in the Pull Request with its content on the ta
 TODO: screenshot
 
 If the Pull Request is checked out, right clicking on a file on the **Changed Files** tree and selecting **Open File** will open the file for editing in Visual Studio.
-
-## Pulling Changes
-
-If a Pull Request is checked out and the author adds new commits to the branch, then the option will be given to pull the changes locally. This works both for Pull Requests from the same repository and from a fork.
-
-TODO: screenshot
-
-## Pushing Changes
-
-If you make commits locally to a Pull Request branch then you can push the changes to the remote branch. You can also do this from `git` itself or from the Visual Studio Team Explorer **Sync** view.
-
-> Note: for this to work with Pull Requests that come from forks, then you must be a maintainer on the repository and the Pull Request submitter must have checked [Allow edits from maintainers](https://help.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/) when submitting the Pull Request.
-
-If there are remote changes to the pull request branch then they must be pulled before you can push your changes.
