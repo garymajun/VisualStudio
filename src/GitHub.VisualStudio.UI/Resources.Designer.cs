@@ -790,7 +790,7 @@ namespace GitHub.VisualStudio.UI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for installing GitHub for Visual Studio. Why not take a look at our [training](https://services.github.com/on-demand/windows/visual-studio) or [documentation](https://visualstudio.github.com/docs)?
+        ///   Looks up a localized string similar to Thanks for installing GitHub for Visual Studio. Why not take a look at our [training](show-training) or [documentation](show-docs)?
         ///
         ///[Don&apos;t show this again](dont-show-again).
         /// </summary>

@@ -24,7 +24,13 @@ namespace GitHub.VisualStudio.TeamExplorer.Home
     public class GitHubHomeSection : TeamExplorerSectionBase, IGitHubHomeSection
     {
         public const string GitHubHomeSectionId = "72008232-2104-4FA0-A189-61B0C6F91198";
-        IVisualStudioBrowser visualStudioBrowser;
+        const string TrainingUrl = "https://services.github.com/on-demand/windows/visual-studio";
+        const string DocsUrl = "https://visualstudio.github.com/docs";
+
+        readonly IVisualStudioBrowser visualStudioBrowser;
+        readonly ITeamExplorerServices teamExplorerServices;
+        readonly IPackageSettings settings;
+        readonly IUsageTracker usageTracker;
 
         [ImportingConstructor]
         public GitHubHomeSection(IGitHubServiceProvider serviceProvider,
@@ -32,13 +38,17 @@ namespace GitHub.VisualStudio.TeamExplorer.Home
             ITeamExplorerServiceHolder holder,
             IVisualStudioBrowser visualStudioBrowser,
             ITeamExplorerServices teamExplorerServices,
-            IPackageSettings settings)
+            IPackageSettings settings,
+            IUsageTracker usageTracker)
             : base(serviceProvider, apiFactory, holder)
         {
             Title = "GitHub";
             View = new GitHubHomeContent();
             View.DataContext = this;
             this.visualStudioBrowser = visualStudioBrowser;
+            this.teamExplorerServices = teamExplorerServices;
+            this.settings = settings;
+            this.usageTracker = usageTracker;
 
             var openOnGitHub = ReactiveCommand.Create();
             openOnGitHub.Subscribe(_ => DoOpenOnGitHub());
@@ -55,16 +65,16 @@ namespace GitHub.VisualStudio.TeamExplorer.Home
                 timer.Tick += (s, e) =>
                 {
                     timer.Stop();
-                    if (!IsGitToolsMessageVisible(teamExplorerServices))
+                    if (!IsGitToolsMessageVisible())
                     {
-                        ShowWelcomeMessage(teamExplorerServices, settings);
+                        ShowWelcomeMessage();
                     }
                 };
                 timer.Start();
             }
         }
 
-        bool IsGitToolsMessageVisible(ITeamExplorerServices teamExplorerServices)
+        bool IsGitToolsMessageVisible()
         {
             return teamExplorerServices.IsNotificationVisible(new Guid("DF785C7C-8454-4836-9686-D1C4A01D0BB9"));
         }
@@ -137,7 +147,7 @@ namespace GitHub.VisualStudio.TeamExplorer.Home
             visualStudioBrowser?.OpenUrl(ActiveRepo.CloneUrl.ToRepositoryUrl());
         }
 
-        void ShowWelcomeMessage(ITeamExplorerServices teamExplorerServices, IPackageSettings settings)
+        void ShowWelcomeMessage()
         {
             var welcomeMessageGuid = new Guid("C529627F-8AA6-4FDB-82EB-4BFB7DB753C3");
             teamExplorerServices.ShowMessage(
@@ -146,15 +156,21 @@ namespace GitHub.VisualStudio.TeamExplorer.Home
                 {
                     var str = o.ToString();
 
-                    if (str.StartsWith("https://"))
+                    switch (str)
                     {
-                        visualStudioBrowser.OpenUrl(new Uri(str));
-                    }
-                    else
-                    {
-                        teamExplorerServices.HideNotification(welcomeMessageGuid);
-                        settings.HideTeamExplorerWelcomeMessage = true;
-                        settings.Save();
+                        case "show-training":
+                            visualStudioBrowser.OpenUrl(new Uri(TrainingUrl));
+                            usageTracker.IncrementWelcomeTrainingClicks().Forget();
+                            break;
+                        case "show-docs":
+                            visualStudioBrowser.OpenUrl(new Uri(DocsUrl));
+                            usageTracker.IncrementWelcomeDocsClicks().Forget();
+                            break;
+                        case "dont-show-again":
+                            teamExplorerServices.HideNotification(welcomeMessageGuid);
+                            settings.HideTeamExplorerWelcomeMessage = true;
+                            settings.Save();
+                            break;
                     }
                 }),
                 false,
