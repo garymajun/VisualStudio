@@ -13,6 +13,9 @@ using System.Diagnostics;
 using GitHub.Extensions;
 using System.Windows.Input;
 using ReactiveUI;
+using GitHub.VisualStudio.UI;
+using GitHub.Settings;
+using System.Windows.Threading;
 
 namespace GitHub.VisualStudio.TeamExplorer.Home
 {
@@ -25,8 +28,11 @@ namespace GitHub.VisualStudio.TeamExplorer.Home
 
         [ImportingConstructor]
         public GitHubHomeSection(IGitHubServiceProvider serviceProvider,
-            ISimpleApiClientFactory apiFactory, ITeamExplorerServiceHolder holder,
-            IVisualStudioBrowser visualStudioBrowser)
+            ISimpleApiClientFactory apiFactory,
+            ITeamExplorerServiceHolder holder,
+            IVisualStudioBrowser visualStudioBrowser,
+            ITeamExplorerServices teamExplorerServices,
+            IPackageSettings settings)
             : base(serviceProvider, apiFactory, holder)
         {
             Title = "GitHub";
@@ -37,6 +43,30 @@ namespace GitHub.VisualStudio.TeamExplorer.Home
             var openOnGitHub = ReactiveCommand.Create();
             openOnGitHub.Subscribe(_ => DoOpenOnGitHub());
             OpenOnGitHub = openOnGitHub;
+
+            // We want to display a welcome message but only if Team Explorer isn't
+            // already displaying the "Install 3rd Party Tools" message. To do this
+            // we need to set a timer and check in the tick as at this point the message
+            // won't be initialized.
+            if (!settings.HideTeamExplorerWelcomeMessage)
+            {
+                var timer = new DispatcherTimer();
+                timer.Interval = new TimeSpan(10);
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    if (!IsGitToolsMessageVisible(teamExplorerServices))
+                    {
+                        ShowWelcomeMessage(teamExplorerServices, settings);
+                    }
+                };
+                timer.Start();
+            }
+        }
+
+        bool IsGitToolsMessageVisible(ITeamExplorerServices teamExplorerServices)
+        {
+            return teamExplorerServices.IsNotificationVisible(new Guid("DF785C7C-8454-4836-9686-D1C4A01D0BB9"));
         }
 
         protected async override void RepoChanged(bool changed)
@@ -105,6 +135,30 @@ namespace GitHub.VisualStudio.TeamExplorer.Home
         void DoOpenOnGitHub()
         {
             visualStudioBrowser?.OpenUrl(ActiveRepo.CloneUrl.ToRepositoryUrl());
+        }
+
+        void ShowWelcomeMessage(ITeamExplorerServices teamExplorerServices, IPackageSettings settings)
+        {
+            var welcomeMessageGuid = new Guid("C529627F-8AA6-4FDB-82EB-4BFB7DB753C3");
+            teamExplorerServices.ShowMessage(
+                Resources.TeamExplorerWelcomeMessage,
+                new RelayCommand(o =>
+                {
+                    var str = o.ToString();
+
+                    if (str.StartsWith("https://"))
+                    {
+                        visualStudioBrowser.OpenUrl(new Uri(str));
+                    }
+                    else
+                    {
+                        teamExplorerServices.HideNotification(welcomeMessageGuid);
+                        settings.HideTeamExplorerWelcomeMessage = true;
+                        settings.Save();
+                    }
+                }),
+                false,
+                welcomeMessageGuid);
         }
 
         protected GitHubHomeContent View
