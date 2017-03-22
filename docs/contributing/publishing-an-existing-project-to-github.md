@@ -5,7 +5,7 @@
 3. Open **Team Explorer**. TODO: screenshot
 4. Click the **Sync** button in Team Explorer. TODO: screenshot
 5. Click the **Publish to GitHub** button. TODO: screenshot
-6. Enter an name and description for the repository on GitHub.
+6. Enter a name and description for the repository on GitHub.
 7. Check the **Private Repository** box if you want to upload the repository as a private repository on GitHub. You must have a [Developer, Team or Business account](https://github.com/pricing) to create private repositories.
 8. Click the **Publish** button.
 
