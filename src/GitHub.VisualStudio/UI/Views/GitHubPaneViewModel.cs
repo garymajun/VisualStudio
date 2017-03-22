@@ -125,6 +125,14 @@ namespace GitHub.VisualStudio.UI.Views
                 },
                 true);
 
+           serviceProvider.AddCommandHandler(GuidList.guidGitHubToolbarCmdSet, PkgCmdIDList.helpCommand,
+                () => true,
+                () =>
+                {
+                    browser.OpenUrl(new Uri("https://visualstudio.github.com/docs"));
+                },
+                true);
+
             initialized = true;
 
             base.Initialize(serviceProvider);
