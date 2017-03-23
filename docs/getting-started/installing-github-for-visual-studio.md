@@ -7,6 +7,22 @@ Before you set up GitHub Desktop, you must already have a GitHub or GitHub Enter
 - For more information on creating a GitHub account, see "[Signing up for a new GitHub account](https://help.github.com/articles/signing-up-for-a-new-github-account/)".
 - For a GitHub Enterprise account, contact your GitHub Enterprise site administrator.
 
+## Installing from the GitHub for Visual Studio Website
+
+1. Visit the [GitHub for Visual Studio](https://visualstudio.github.com/) site.
+2. Click the **Download GitHub Extension for Visual Studio** button.
+3. In your computer's **Downloads** folder, double-click **GitHub.VisualStudio.vsix**.
+4. In the pop-up window, click **Install**.
+5. After the program has been installed, run Visual Studio.
+
+## Installing from the Visual Studio Marketplace
+
+1. Visit [GitHub for Visual Studio](https://marketplace.visualstudio.com/items?itemName=GitHub.GitHubExtensionforVisualStudio) on the Visual Studio Marketplace.
+2. Click **Download**.
+3. In your computer's **Downloads** folder, double-click **GitHub.VisualStudio.vsix**.
+4. In the pop-up window, click **Install**.
+5. After the program has been installed, run Visual Studio.
+
 ## Installing from the Visual Studio Installer
 
 GitHub for Visual Studio can be installed from the Visual Studio 2015 or 2017 installer.
@@ -25,19 +41,3 @@ GitHub for Visual Studio can be installed from the Visual Studio 2015 or 2017 in
 3. Select the **Individual components** tab at the top.
 4. Scroll down to **Code tools** and check **GitHub extension for Visual Studio**. TODO: Insert screenshot
 5. Click the **Modify** button.
-
-## Installing from the Visual Studio Marketplace
-
-1. Visit [GitHub for Visual Studio](https://marketplace.visualstudio.com/items?itemName=GitHub.GitHubExtensionforVisualStudio) on the Visual Studio Marketplace.
-2. Click **Download**.
-3. In your computer's **Downloads** folder, double-click **GitHub.VisualStudio.vsix**.
-4. In the pop-up window, click **Install**.
-5. After the program has been installed, run Visual Studio.
-
-## Installing from the GitHub for Visual Studio Website
-
-1. Visit the [GitHub for Visual Studio](https://visualstudio.github.com/) site.
-2. Click the **Download GitHub Extension for Visual Studio** button.
-3. In your computer's **Downloads** folder, double-click **GitHub.VisualStudio.vsix**.
-4. In the pop-up window, click **Install**.
-5. After the program has been installed, run Visual Studio.
