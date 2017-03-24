@@ -1,5 +1,7 @@
 # View the Pull Requests for a repository
 
+> You must be [logged in to GitHub](../getting-started/authenticating-to-github.md) to view a repository's pull requests.
+
 GitHub for Visual Studio exposes the Pull Requests for the current repository and lets you create new pull requests and review Pull Requests from other contributors.
 
 1. Open a solution in a GitHub repository.
